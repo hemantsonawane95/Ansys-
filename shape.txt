@@ -1,0 +1,63 @@
+!turning on preprocessor
+
+/prep7
+
+!deleting old items
+
+vsel,all
+asel,all
+lsel,all
+ksel,all
+
+vdel,all
+adel,all
+ldel,all
+kdel,all
+
+!bounddary keypoints
+k,{{ shape.x1 }},{{ shape.y1 }},{{ shape.z1 }}
+k,{{ shape.x2 }},{{ shape.y2 }},{{ shape.z1 }}
+k,{{ shape.x3 }},{{ shape.y2 }},{{ shape.z2 }}
+k,{{ shape.x4 }},{{ shape.y1 }},{{ shape.z2 }}
+
+!boundary lines
+L,{{ shape.p1 }},{{ shape.p2 }}
+L,{{ shape.p2 }},{{ shape.p3 }}
+L,{{ shape.p3 }},{{ shape.p4 }}
+L,{{ shape.p4 }},{{ shape.p1 }}
+
+
+al,{{ shape.l1 }},{{ shape.l2 }},{{ shape.l3 }},{{ shape.l4 }}
+
+
+!Mid-Ellipse -1
+
+clocal,{{ shape.kcn }},{{ shape.kcs }},{{ shape.xl }},{{ shape.yl }},{{ shape.zl }},{{ shape.thxy }},{{ shape.THYZ }},{{ shape.thzx }},{{ shape.par1 }},{{ shape.par2 }}
+csys,{{ shape.kcn }}
+k,{{ shape.keypoint1_x }},{{ shape.keypoint1_y }},{{ shape.angle_of_rotation_1 }},{{ shape.ref }}
+k,{{ shape.keypoint2_x }},{{ shape.keypoint2_y }},{{ shape.angle_of_rotation_2 }},{{ shape.ref }}
+k,{{ shape.keypoint3_x }},{{ shape.keypoint3_y }},{{ shape.angle_of_rotation_3 }},{{ shape.ref }}
+k,{{ shape.keypoint4_x }},{{ shape.keypoint4_y }},{{ shape.angle_of_rotation_4 }},{{ shape.ref }}
+
+L,{{ shape.p5 }},{{ shape.p6 }}
+L,{{ shape.p6 }},{{ shape.p7 }}
+L,{{ shape.p7 }},{{ shape.p8 }}
+L,{{ shape.p8 }},{{ shape.p5 }}
+
+csys,{{ shape.kcn }}
+
+al,{{ shape.l5 }},{{ shape.l6 }},{{ shape.l7 }},{{ shape.l8 }}
+
+!substraction of Ellipse 
+flst,{{ shape.nfield_1 }},{{ shape.narg_1 }},{{ shape.type_1 }},ORDE,{{ shape.leng_1 }}  
+fitem,{{ shape.itemy_1 }},{{ shape.itemz_1 }}
+fitem,{{ shape.itemy_2 }},{{ shape.itemz_2 }}   
+  
+ASBA,       {{ shape.na1 }},P51X  
+
+!Extrude the Geometry
+flst,{{ shape.nfield_2 }},{{ shape.narg_2 }},{{ shape.type_2 }},ORDE,{{ shape.leng_2 }}
+fitem,{{ shape.itemy_3 }},{{ shape.itemz_3 }}  
+VEXT,P51X,,,{{ shape.dx }},{{ shape.dy }},{{ shape.dz }},,,	
+
+gplot
