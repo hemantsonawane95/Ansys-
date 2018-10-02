@@ -1,2 +1,2 @@
 # Ansys-
-Generating ansys code using python 
+Generate ansys code using python 
